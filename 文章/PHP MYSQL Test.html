@@ -1,12 +1,15 @@
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column {"width":"100%"} -->
-<div class="wp-block-column" style="flex-basis:100%"><!-- wp:freeform -->
-<p>[xyz-ips snippet="php-show-db"]</p>
-<p>[xyz-ips snippet="get-max-timestamp"]</p>
-<!-- /wp:freeform --></div>
-<!-- /wp:column --></div>
+<!-- wp:group {"align":"wide"} -->
+<div class="wp-block-group alignwide">
+<!-- wp:columns {"verticalAlignment":"top","align":"full","style":{"color":{"text":"#000000","background":"#ffffff"}}} -->
+<div class="wp-block-columns alignfull are-vertically-aligned-top has-text-color has-background" style="background-color:#ffffff;color:#000000">
+<!-- wp:column {"verticalAlignment":"top"} -->
+<div class="wp-block-column is-vertically-aligned-top">
+<!-- wp:image {"sizeSlug":"large"} /-->
+</div>
+<!-- /wp:column -->
+</div>
 <!-- /wp:columns -->
-
+<p>[xyz-ips snippet="get-max-timestamp"]</p>
 <!-- wp:html -->
 <script type="text/javascript">
 var dateReviver = function (key, value) { //將日期字串轉為日期資料型態
@@ -22,9 +25,7 @@ var dateReviver = function (key, value) { //將日期字串轉為日期資料型
     }
     return value;
 };
-
 function getIdFromUrl(url) { return url.match(/[-\w]{25,}/); } //return array EX:["1ka6EJwunWYDf2lFGGVgIDoIx2Uyt_lmN"...], id=getIdFromUrl(url)[0]
-
 function doPost(time, author, title, short_description, content, pic_url, timestamp)
 {
 $.ajax({
@@ -37,7 +38,6 @@ $.ajax({
 	}
    });
 }
-
 function searchMail(){
 	var xmlhttp;
     if (window.XMLHttpRequest){
@@ -80,7 +80,6 @@ function searchMail(){
         }
     }
 	var max_timestamp = $(".variable‑content").text();
-
     var url="https://script.google.com/macros/s/AKfycbylmom2I5Qqi9sTTs2dGNaJh31rKtZO-ysiWv7Ln1t-PNLg11pbRfJxDIb0kjp03Kf4/exec"; //=> 換成前一動複製的網頁應用程式 url
 	//if(!max_timestamp && typeof(max_timestamp) !== 'undefined' && max_timestamp != 0) max_timestamp="*";
 	xmlhttp.open("get",url+"?timestamp="+max_timestamp,true);
@@ -94,21 +93,19 @@ function cleanAll(){
   
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type='text/javascript'>
+<script type="text/javascript">
 	window.onload = searchMail;
 </script>
-</head>
-<body>
 測試資料:
 1665633798000
-<br />
+<br>
 <!---
 輸入timestamp：<input id="timestamp" type="text" /><br />
 <input name="search" onclick="searchMail();" type="button" value="送出" />
 <input name="clean" onclick="cleanAll();" type="button" value="清除資料" /> 
+<br><br><br><br>
 --->
 <span id="search_status"></span>
-
-</body>
-
+<p>[xyz-ips snippet="php-show-db"]</p>
 <!-- /wp:html -->
+<!-- /wp:group -->
