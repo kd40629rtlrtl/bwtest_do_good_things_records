@@ -1,0 +1,114 @@
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"width":"100%"} -->
+<div class="wp-block-column" style="flex-basis:100%"><!-- wp:freeform -->
+<p>[xyz-ips snippet="php-show-db"]</p>
+<p>[xyz-ips snippet="get-max-timestamp"]</p>
+<!-- /wp:freeform --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:html -->
+<script type="text/javascript">
+var dateReviver = function (key, value) { //將日期字串轉為日期資料型態
+    //console.log(key);
+    //console.log(value);
+    var a;
+    if (typeof value === 'string') {
+        a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/.exec(value);
+        //console.log(a);
+        if (a) {
+			return new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6])); //a[0]是完整字串
+        }
+    }
+    return value;
+};
+
+function getIdFromUrl(url) { return url.match(/[-\w]{25,}/); } //return array EX:["1ka6EJwunWYDf2lFGGVgIDoIx2Uyt_lmN"...], id=getIdFromUrl(url)[0]
+
+function doPost(time, author, title, short_description, content, pic_url, timestamp)
+{
+$.ajax({
+    url: "http://127.0.0.1/test_insert_only_insert.php", 
+    method: "POST", 
+    //data: { "message":$('#input-message').val(),"sender":$('#sender').val(),"receiver":$('#receiver').val()},you can pass the values directly like this or else you can store it in variables and can pass
+    data: {"time":time,"author":author,"title":title, "short_description":short_description,"content":content,"pic_url":pic_url, "timestamp":timestamp},
+	success:function(msg){
+	$('#result').html(msg);
+	}
+   });
+}
+
+function searchMail(){
+	var xmlhttp;
+    if (window.XMLHttpRequest){
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }else{
+      // code for IE6, IE5
+      	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function(){
+    	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+          var result = xmlhttp.responseText;
+          //console.log(result);
+          
+          var obj = JSON.parse(result,dateReviver);//解析json字串為json物件形式,dateReviver將日期字串轉為日期資料型態
+          //console.log(obj);
+          
+          var html = '<table border=1 width=100%>';//將資料寫出在Html表格，配合2次迴圈讀取每1筆資料內的所有資料
+                        
+          for (var i = 0; i < obj.length; i ++ ) {//所有筆數的資料跑迴圈
+            html  += '<tr>';//
+            for(var j = 0; j < obj[i].dataload.length; j++ ) //每1筆資料內的所有資料，dataload對應回傳的JSON格式
+            	{
+                  html+= '<td>'+obj[i].dataload[j]+'</td>';
+                }
+				if(i!=0) doPost(obj[i].dataload[0], obj[i].dataload[1], obj[i].dataload[2], obj[i].dataload[3], obj[i].dataload[4], getIdFromUrl(obj[i].dataload[5])[0], Math.floor(obj[i].dataload[0]));
+            html  += '</tr>';            
+          }
+          
+          html+="</table>";
+                        
+          document.getElementById("search_status").innerHTML=html;//寫入Html
+          
+          if(obj.length==1) {//只有1筆(title)代表查不到資料
+            html = "<h3>無更新的貼文<h3>"
+         	document.getElementById("search_status").innerHTML=html;//寫入Html
+            //alert('查無資料');
+            document.getElementById("timestamp").value = "";
+          }
+        }
+    }
+	var max_timestamp = $(".variable‑content").text();
+
+    var url="https://script.google.com/macros/s/AKfycbylmom2I5Qqi9sTTs2dGNaJh31rKtZO-ysiWv7Ln1t-PNLg11pbRfJxDIb0kjp03Kf4/exec"; //=> 換成前一動複製的網頁應用程式 url
+	//if(!max_timestamp && typeof(max_timestamp) !== 'undefined' && max_timestamp != 0) max_timestamp="*";
+	xmlhttp.open("get",url+"?timestamp="+max_timestamp,true);
+    xmlhttp.send();
+}
+  
+function cleanAll(){
+  document.getElementById("search_status").innerHTML="";
+  document.getElementById("mailID").value = "";
+}
+  
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript'>
+	window.onload = searchMail;
+</script>
+</head>
+<body>
+測試資料:
+1665633798000
+<br />
+<!---
+輸入timestamp：<input id="timestamp" type="text" /><br />
+<input name="search" onclick="searchMail();" type="button" value="送出" />
+<input name="clean" onclick="cleanAll();" type="button" value="清除資料" /> 
+--->
+<span id="search_status"></span>
+
+</body>
+
+<!-- /wp:html -->
