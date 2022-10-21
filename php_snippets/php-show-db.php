@@ -1,3 +1,11 @@
+<style>
+img.a {
+  width: 240px;
+  height: 180px;
+  object-fit: cover;
+}
+</style>
+
 <?php
 	$db_host = "127.0.0.1";
 	$db_username = "root";
@@ -42,7 +50,7 @@
 <a href="http://testsite2.test/2022/10/18/new-page/?title=<?php echo $row['title']; ?>">
 <!-- wp:column {"verticalAlignment":"top"} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"></gwmw><gwmw style="display:none;"></figcaption></figure>
+<figure class="wp-block-image size-large"><img class="a" src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"></gwmw><gwmw style="display:none;"></figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","lineHeight":"1.3"}}} -->
@@ -82,7 +90,7 @@
 <a href="http://testsite2.test/2022/10/18/new-page/?title=<?php echo $row['title']; ?>">
 <!-- wp:column {"verticalAlignment":"top"} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:image {"sizeSlug":"large"} -->
-<figure class="wp-block-image size-large"><img src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"></gwmw></gwmw></gwmw></figcaption></figure>
+<figure class="wp-block-image size-large"><img class="a" src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"></gwmw></gwmw></gwmw></figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","lineHeight":"1.3"}}} -->
