@@ -54,7 +54,7 @@ img.a {
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","lineHeight":"1.3"}}} -->
-<h3 style="font-size:24px;line-height:1.3"><strong><?php echo $row["title"]; ?></strong></h3>
+<h3 style="font-size:24px;line-height:1.3;width: 240px; word-break: break-all;word-wrap: break-word;"><strong><?php echo $row["title"]; ?></strong></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
