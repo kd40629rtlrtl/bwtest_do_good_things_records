@@ -18,7 +18,7 @@
 ?>
 
 <?php
-	$query = "SELECT * FROM bwtest where title='$_GET[title]' "; //搜尋 *(全部欄位) ，從 表staff
+	$query = "SELECT * FROM bwtest where random_string='$_GET[random_string]' "; //搜尋 *(全部欄位) ，從 表staff
 
 	//mysqli_query << PHP 有很多種...指令(?) ，這是其中一個，我現在還都是學到甚麼用什麼，沒辦法自己看手冊，然後實驗+學習使用。 
 

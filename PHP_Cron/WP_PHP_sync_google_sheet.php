@@ -1,4 +1,14 @@
 <?php
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 	$db_host = "127.0.0.1";
 	$db_username = "root";
 	$db_password = "";
@@ -62,9 +72,11 @@
 		echo "<br>";
 		
 		if($row_idx != 0) {
-			$sql="INSERT INTO bwtest (time,author,title,short_description,content,pic_url,timestamp)
+			$random_string=generateRandomString();
+			$visible = "0";
+			$sql="INSERT INTO bwtest (time,author,title,short_description,content,pic_url,timestamp, random_string, visible)
 			VALUES
-			('$time','$author','$title','$short_description','$content','$pic_url','$timestamp')";
+			('$time','$author','$title','$short_description','$content','$pic_url','$timestamp','$random_string','$visible')";
 			if (mysqli_query($con, $sql)) {
 				echo "新记录插入成功";
 			} else {
@@ -74,3 +86,5 @@
 	}
 	mysqli_close($con);
 ?>
+
+

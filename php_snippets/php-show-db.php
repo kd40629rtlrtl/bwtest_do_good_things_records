@@ -38,6 +38,7 @@ img.a {
 					$column_idx=0;
 					foreach($query_run as $row)
 					{
+						if($row['visible'] == "0") continue;
 						if($column_idx == 0)
 						{
 			?>
@@ -47,7 +48,7 @@ img.a {
 			<?php
 						}
 			?>
-<a href="http://testsite2.test/2022/10/18/new-page/?title=<?php echo $row['title']; ?>">
+<a href="http://testsite2.test/2022/10/18/new-page/?random_string=<?php echo $row['random_string']; ?>">
 <!-- wp:column {"verticalAlignment":"top"} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img class="a" src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"></gwmw><gwmw style="display:none;"></figcaption></figure>
@@ -87,7 +88,7 @@ img.a {
 						{
 			?>
 <div style="visibility:hidden">
-<a href="http://testsite2.test/2022/10/18/new-page/?title=<?php echo $row['title']; ?>">
+<a href="http://testsite2.test/2022/10/18/new-page/?random_string=<?php echo $row['random_string']; ?>">
 <!-- wp:column {"verticalAlignment":"top"} -->
 <div class="wp-block-column is-vertically-aligned-top"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img class="a" src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"><gwmw style="display:none;"></gwmw></gwmw></gwmw></figcaption></figure>
