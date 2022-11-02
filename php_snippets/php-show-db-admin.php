@@ -4,6 +4,13 @@ img.a {
   height: 180px;
   object-fit: cover;
 }
+img.b {
+  width: 240px;
+  height: 180px;
+  object-fit: cover;
+  opacity: 0.5; //透明度設為 0.5
+  filter: alpha(opacity=50); // IE8 與更早的版本
+}
 </style>
 
 <?php
@@ -111,7 +118,7 @@ img.a {
 						{?>
 <a href="http://testsite2.test/2022/11/01/new-page-admin/?random_string=<?php echo $row['random_string']; ?>">
 <?php					}?>
-<figure class="wp-block-image size-large"><img class="a" src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"></gwmw><gwmw style="display:none;"></figcaption></figure>
+<figure class="wp-block-image size-large"><img class=<?php if($row['visible']=="0"){echo "b";}else{echo "a";}?> src="https://drive.google.com/uc?export=view&amp;id=<?php echo $row["pic_url"]; ?>" alt=""/><figcaption><gwmw style="display:none;"><gwmw style="display:none;"></gwmw><gwmw style="display:none;"></figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","lineHeight":"1.3"}}} -->
