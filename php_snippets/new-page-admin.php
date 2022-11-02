@@ -98,7 +98,7 @@
 善行內容:(字數限制:1024)<br><textarea maxlength="1024" cols="80" rows="10" name="content"><?php echo $row["content"];?></textarea><br>
 提交 <input type="submit" name="random_string" value="<?php echo $row['random_string'];?>"></input>
 </form>
-
+<a href="http://testsite2.test/2022/11/01/善行點滴管理">回善行點滴管理主畫面</a>
 </body>
 </html>
 

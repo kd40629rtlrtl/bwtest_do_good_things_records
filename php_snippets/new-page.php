@@ -53,6 +53,7 @@
 		}
 	}
 ?>
+<a href="http://testsite2.test/2022/10/21/善行點滴">回善行點滴主畫面</a>
 </div>
 
 <?php mysqli_close($con);?>
